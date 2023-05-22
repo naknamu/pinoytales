@@ -38,6 +38,7 @@ app.set('view engine', 'ejs');
 app.use(morgan("dev")); // logs requests to the console
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 app.use("/", libraryRouter);
