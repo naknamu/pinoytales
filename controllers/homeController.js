@@ -11,7 +11,7 @@ home = asyncHandler(async (req, res, next) => {
         genreList, 
         authorList
     ] = await Promise.all([
-        Tale.find({}).limit(2).sort({createdAt: -1}).exec(),
+        Tale.find({}).limit(2).sort({createdAt: -1}).populate("genre").exec(),
         Genre.find({}).sort({"name": 1}).exec(),
         Author.find({}).sort({"name": 1}).exec(),
     ]);
@@ -20,7 +20,7 @@ home = asyncHandler(async (req, res, next) => {
         title: "Home",        
         latest_tales: latestTales,
         genre_list: genreList,
-        author_list: authorList
+        author_list: authorList,
     })
 });
 
