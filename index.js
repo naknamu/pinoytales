@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const morgan = require("morgan");
 const createError = require("http-errors");
+const libraryRouter = require("./routes/library");
 
 require("dotenv").config();
 
@@ -32,6 +33,9 @@ mongoose
 app.use(morgan("dev")); // logs requests to the console
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Define routes
+app.use("/", libraryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

@@ -1,4 +1,4 @@
-const Tale = require("../model/tale");
+const Tale = require("../models/tale");
 const asyncHandler = require('express-async-handler')
 
 // Display list of all Tale
@@ -8,7 +8,7 @@ tale_list = asyncHandler( async(req, res, next) => {
 
 // Display detail page for a specific Tale.
 tale_detail = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Tale detail: ${req.params.id}`);
+    res.send(`NOT IMPLEMENTED: Tale detail: ${req.params.taletitle}`);
 });
 
 // Display Tale create form on GET.
@@ -23,22 +23,22 @@ tale_create_post = asyncHandler(async (req, res, next) => {
 
 // Display Tale delete form on GET.
 tale_delete_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Tale delete GET");
+    res.send(`NOT IMPLEMENTED: Tale delete GET: ${req.params.taletitle} `);
 });
 
 // Handle Tale delete on POST.
 tale_delete_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Tale delete POST");
+    res.send(`NOT IMPLEMENTED: Tale delete POST: ${req.params.taletitle}`);
 });
 
 // Display Tale update form on GET.
 tale_update_get = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Tale update GET");
+    res.send(`NOT IMPLEMENTED: Tale update GET: ${req.params.taletitle}`);
 });
 
 // Handle Tale update on POST.
 tale_update_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Tale update POST");
+    res.send(`NOT IMPLEMENTED: Tale update POST: ${req.params.taletitle}`);
 });
 
 module.exports = {
