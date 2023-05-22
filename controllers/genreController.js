@@ -1,7 +1,7 @@
 const Genre = require('../models/genre');
 const asyncHandler = require('express-async-handler')
 
-// Display list of all Categories
+// Display list of all genres
 genre_list = asyncHandler( async(req, res, next) => {
     res.send("NOT IMPLEMENTED: genre LIST")
 })
