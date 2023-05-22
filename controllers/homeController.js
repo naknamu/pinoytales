@@ -7,20 +7,20 @@ const Genre = require('../models/genre');
 home = asyncHandler(async (req, res, next) => {
     // Get details of published blog posts, categories and tags (in parallel)
     const [
-        taleCount, 
-        genreCount, 
-        authorCount
+        latestTales, 
+        genreList, 
+        authorList
     ] = await Promise.all([
-        Tale.countDocuments().exec(),
-        Genre.countDocuments().exec(),
-        Author.countDocuments().exec(),
+        Tale.find({}).limit(2).sort({createdAt: -1}).exec(),
+        Genre.find({}).sort({"name": 1}).exec(),
+        Author.find({}).sort({"name": 1}).exec(),
     ]);
 
     res.render("home", {
         title: "Home",        
-        tale_count: taleCount,
-        genre_count: genreCount,
-        author_count: authorCount
+        latest_tales: latestTales,
+        genre_list: genreList,
+        author_list: authorList
     })
 });
 

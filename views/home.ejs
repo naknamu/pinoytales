@@ -5,12 +5,30 @@
   </head>
   <body>
 
-    <h1>Browse short stories, folklores, legends and many more in Pinoy Tales.</h1>
+    <h1>Read Pinoy short stories, folklores, legends and many more!</h1>
+
+    <h2>Latest Tales</h2>
 
     <ul>
-      <li><strong>Tales: </strong><%= tale_count %></li>
-      <li><strong>Genres: </strong><%= genre_count %></li>
-      <li><strong>Authors: </strong><%= author_count %></li>
+        <% latest_tales.forEach(tale => { %>
+            <li><%= tale.title %></li>
+        <% }) %>
+    </ul>
+
+    <h2>Browse by Genre</h2>
+
+    <ul>
+        <% genre_list.forEach(genre => { %>
+            <li><%= genre.name %></li>
+        <% }) %>
+    </ul>
+
+    <h2>Browse by Author</h2>
+
+    <ul>
+        <% author_list.forEach(author => { %>
+            <li><%= author.name %></li>
+        <% }) %>
     </ul>
     
   </body>
