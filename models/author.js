@@ -11,7 +11,10 @@ const AuthorSchema = new Schema({
 
 // Virtual for author's URL
 AuthorSchema.virtual("url").get(function () {
-    return `/author/${this.name}`;
+    const urlRegex = /\s/g;
+    const url_title = this.name.toLowerCase().replace(urlRegex, '-');
+
+    return `/authors/${url_title}`;
 });
 
 // Export model

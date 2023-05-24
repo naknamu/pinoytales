@@ -33,7 +33,7 @@ TaleSchema.virtual("url").get(function () {
     const urlRegex = /\s/g;
     const url_title = this.title.toLowerCase().replace(urlRegex, '-');
 
-    return `/tale/${url_title}`;
+    return `/tales/${url_title}`;
 });
 
 // Export model

@@ -24,9 +24,9 @@
                     const previewContent = tale.content.substring(0, MAX_PREVIEW_LENGTH); %>
                     <li>
                         <div class="card">
-                            <div class="text-tiny genre"><%= tale.genre.name %></div>
-                            <img src="<%= tale.banner_url %>" alt="test">
-                            <h3 class="h3"><%= tale.title %></h3>
+                            <div class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></div>
+                            <img src="<%= tale.banner_url %>" alt="test" onClick="navigateToTale('<%= tale.url %>')">
+                            <h3 class="h3" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
                             <p class="preview-content"><%= previewContent %>...</p>
                         </div>
                     </li>
@@ -38,7 +38,7 @@
 
                 <ul class="block-wrapper">
                     <% genre_list.forEach(genre => { %>
-                        <li class="btn-block"><%= genre.name %></li>
+                        <li class="btn-block" onclick="navigateToGenre('<%= genre.url %>')"><%= genre.name %></li>
                     <% }) %>
                 </ul>
 
@@ -49,13 +49,30 @@
 
                 <ul class="block-wrapper">
                     <% author_list.forEach(author => { %>
-                        <li class="btn-block"><%= author.name %></li>
+                        <li class="btn-block" onclick="navigateToAuthor('<%= author.url %>')"><%= author.name %></li>
                     <% }) %>
                 </ul>
             </div>
 
         </div>
     </main>
+
+    <script>
+        const navigateToTale = (url) => {
+            console.log("Go to tale! " + url);
+            window.location.href = url;
+        }
+
+        const navigateToGenre = (url) => {
+            console.log("Go to genre! " + url);
+            window.location.href = url;
+        }
+
+        const navigateToAuthor = (url) => {
+            console.log("Go to author! " + url);
+            window.location.href = url;
+        }
+    </script>
     
   </body>
 </html>

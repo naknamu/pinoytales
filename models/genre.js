@@ -13,7 +13,7 @@ GenreSchema.virtual("url").get(function () {
     const urlRegex = /\s/g;
     const url_title = this.name.toLowerCase().replace(urlRegex, '-');
 
-    return `/genre/${url_title}`;
+    return `/genres/${url_title}`;
 });
 
 // Export model
