@@ -20,6 +20,7 @@
 
     /** color **/
     --white: hsl(0, 0%, 100%);
+    --cadet-blue-crayola_a20: hsla(222, 23%, 71%, 0.2);
   
     /** typography **/
     --fs-base: 1rem;
@@ -43,6 +44,7 @@
     /** box shadow **/
     --shadow-1: 2px 2px 4px rgba(0, 0, 0, 0.1);
     --shadow-2: 0 1px 3px rgba(0, 0, 0, 0.1);
+    --shadow-3: 0 0 20px hsla(216, 14%, 14%, 0.05);
   
     /** padding **/
     --pad-1: 1rem;
@@ -155,6 +157,19 @@ img {
     padding-block: 1rem;
 }
 
+/** HEADER **/
+
+.header {
+  box-shadow: var(--shadow-3);
+  border-bottom: 1px solid var(--cadet-blue-crayola_a20);
+}
+
+.logo {
+  font-size: 32px;
+  color: var(--sea-blue);
+  font-family: 'Montserrat Subrayada', sans-serif;
+}
+
 /** HOME **/
 
 
@@ -179,6 +194,7 @@ img {
     padding: var(--pad-1);
     display: grid;
     gap: 1rem;
+    border-radius: var(--radius-6);
 }
 
 .card .genre {
@@ -203,4 +219,10 @@ img {
     display: flex;
     gap: 1rem;
     margin-block: 1rem;
+}
+
+/** FOOTER **/
+
+.footer {
+  text-align: center;
 }
