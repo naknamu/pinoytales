@@ -197,7 +197,7 @@ img {
     border-radius: var(--radius-6);
 }
 
-.card .genre {
+.genre, .author {
     text-decoration: underline;
 }
 
@@ -225,4 +225,15 @@ img {
 
 .footer {
   text-align: center;
+}
+
+/** TALE DETAIL **/
+
+.tale-detail .container {
+  display: grid;
+  gap: 1rem;
+}
+
+.tale-content {
+  font-family: var(--ff-segoe);
 }

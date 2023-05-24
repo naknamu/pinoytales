@@ -7,7 +7,8 @@
     "express-async-handler": "^1.2.0",
     "http-errors": "^2.0.0",
     "mongoose": "^7.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "slugify": "^1.6.6"
   },
   "name": "pinoytales",
   "description": "Browse short stories from the Philippine Literature.",

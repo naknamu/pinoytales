@@ -8,7 +8,12 @@ tale_list = asyncHandler( async(req, res, next) => {
 
 // Display detail page for a specific Tale.
 tale_detail = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Tale detail: ${req.params.taletitle}`);
+    const results = await Tale.findOne({ slug: req.params.taletitle}).populate("genre author").exec();
+
+    res.render("tale_detail", {
+        title: `${results.title}`,
+        tale: results,
+    })
 });
 
 // Display Tale create form on GET.
