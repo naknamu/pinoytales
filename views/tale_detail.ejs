@@ -3,16 +3,18 @@
   <head>
     <%- include('partials/head'); %>
   </head>
-  <body>
+  <body class="light-theme">
     <%- include('partials/nav'); %>
     
-    <main class="tale-detail">
+    <main class="main tale-detail">
       <div class="container">
-        <p class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></p>
-        <img src="<%= tale.banner_url %>" alt="<%= tale.title %> banner">
-        <h1 class="h1"><%= tale.title %></h1>
-        <p onclick="navigateToAuthor('<%= tale.author.url %>')">by <span class="author"> <%= tale.author.name %></span></p>
-        <p class="tale-content"><%= tale.content %></p>
+        <div class="tale-wrapper">
+          <p class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></p>
+          <img src="<%= tale.banner_url %>" alt="<%= tale.title %> banner">
+          <h1 class="h1"><%= tale.title %></h1>
+          <p onclick="navigateToAuthor('<%= tale.author.url %>')">by <span class="author"> <%= tale.author.name %></span></p>
+          <p class="tale-content"><%= tale.content %></p>
+        </div>
       </div>
     </main>
     

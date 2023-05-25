@@ -27,8 +27,8 @@
                     <li>
                         <div class="card">
                             <div class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></div>
-                            <img src="<%= tale.banner_url %>" alt="test" onClick="navigateToTale('<%= tale.url %>')">
-                            <h3 class="h3" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
+                            <img class="banner" src="<%= tale.banner_url %>" alt="test" onClick="navigateToTale('<%= tale.url %>')">
+                            <h3 class="h3 title" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
                             <p class="preview-content"><%= previewContent %>...</p>
                         </div>
                     </li>

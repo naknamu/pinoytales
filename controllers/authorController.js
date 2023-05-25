@@ -1,4 +1,5 @@
 const Author = require('../models/author');
+const Tale = require('../models/tale');
 const asyncHandler = require('express-async-handler')
 
 // Display list of all authors
@@ -8,7 +9,15 @@ author_list = asyncHandler( async(req, res, next) => {
 
 // Display detail page for a specific author.
 author_detail = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: author detail: ${req.params.authorname}`);
+    const author = await Author.findOne({ slug: req.params.authorname}).exec();
+
+    const tale_list = await Tale.find({ author: author.id}).exec();
+
+    res.render("author_detail", {
+        title: `${author.name}`,
+        author,
+        tale_list
+    });
 });
 
 // Display author create form on GET.

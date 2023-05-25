@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include('partials/head'); %>
+  </head>
+  <body class="light-theme">
+    <%- include('partials/nav'); %>
+    
+    <main class="main author-detail">
+      <div class="container">
+        
+        <h1 class="h1"><%= author.name %></h1>
+        
+        <ul class="block-wrapper">
+            <% tale_list.forEach(tale => { %>
+                <li class="btn-block" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></li>
+            <% }) %>
+        </ul>
+
+
+      </div>
+    </main>
+    
+    <%- include('partials/footer'); %>
+
+  </body>
+</html>

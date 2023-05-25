@@ -1,4 +1,5 @@
 const Genre = require('../models/genre');
+const Tale = require('../models/tale');
 const asyncHandler = require('express-async-handler')
 
 // Display list of all genres
@@ -8,7 +9,15 @@ genre_list = asyncHandler( async(req, res, next) => {
 
 // Display detail page for a specific genre.
 genre_detail = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: genre detail: ${req.params.genrename}`);
+    const genre = await Genre.findOne({ slug: req.params.genrename}).exec();
+
+    const tale_list = await Tale.find({ genre: genre.id}).exec();
+
+    res.render("genre_detail", {
+        title: `${genre.name}`,
+        genre,
+        tale_list
+    })
 });
 
 // Display genre create form on GET.
