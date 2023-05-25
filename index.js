@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const morgan = require("morgan");
 const createError = require("http-errors");
 const libraryRouter = require("./routes/library");
+const apiRouter = require("./routes/api");
 const path = require('path');
 
 require("dotenv").config();
@@ -42,6 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Define routes
 app.use("/", libraryRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
