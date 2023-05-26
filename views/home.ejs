@@ -26,7 +26,12 @@
                     const previewContent = tale.content.substring(0, MAX_PREVIEW_LENGTH); %>
                     <li>
                         <div class="card">
-                            <div class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></div>
+                            <div class="genre-wrapper">
+                                <% tale.genre.forEach(genre => { %>
+                                    <div class="text-tiny genre" onclick="navigateToGenre('<%= genre.url %>')"><%= genre.name %></div>
+                                <% }) %>
+                            </div>
+                            <!-- <div class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></div> -->
                             <img class="banner" src="<%= tale.banner_url %>" alt="test" onClick="navigateToTale('<%= tale.url %>')">
                             <h3 class="h3 title" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
                             <p class="preview-content"><%= previewContent %>...</p>

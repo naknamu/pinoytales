@@ -217,6 +217,12 @@ img {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 
+.genre-wrapper {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
 .banner {
   cursor: pointer;
 }
@@ -233,6 +239,7 @@ img {
 .genre, .author {
     text-decoration: underline;
     cursor: pointer;
+    color: var(--foreground-secondary);
 }
 
 .preview-content {
@@ -271,6 +278,7 @@ img {
 
 .tale-content {
   font-family: var(--ff-segoe);
+  margin-block: 1rem;
 }
 
 

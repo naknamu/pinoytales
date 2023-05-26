@@ -20,11 +20,13 @@ const TaleSchema = new Schema({
         type: String,
         required: true
     },
-    genre: {
+    genre: [
+      {
         type: Schema.Types.ObjectId,
         ref: "Genre",
         required: true,
-    },
+      }
+    ],
     banner_url: {
         type: String,
         required: true

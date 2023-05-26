@@ -24,7 +24,7 @@ const {
     genre_delete_post,
     genre_update_get,
     genre_update_post
-} = require('../controllers/genreController');
+} = require('../controllers/genreControllerAPI');
 
 const {
     author_list,

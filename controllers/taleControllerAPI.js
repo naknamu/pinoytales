@@ -1,9 +1,10 @@
 const Tale = require("../models/tale");
 const asyncHandler = require('express-async-handler')
+const { body, validationResult } = require("express-validator");
 
 // Display list of all Tale
 tale_list = asyncHandler( async(req, res, next) => {
-    const results = await Tale.find().exec();
+    const results = await Tale.find({}, "title").exec();
 
     res.status(200).json(results);
 })
@@ -21,9 +22,56 @@ tale_create_get = asyncHandler(async (req, res, next) => {
 });
 
 // Handle Tale create on POST.
-tale_create_post = asyncHandler(async (req, res, next) => {
-    res.send("NOT IMPLEMENTED: Tale create POST");
-});
+tale_create_post =  [
+    // Convert genre to an array
+    (req, res, next) => {
+      if (!(req.body.genre instanceof Array)) {
+        if (typeof req.body.genre === "undefined") req.body.genre = [];
+        else req.body.genre = new Array(req.body.genre);
+      }
+  
+      next();
+    },
+  
+    // Validate and sanitize fields.
+  
+    body("title", "Title must not be empty.")
+      .trim()
+      .isLength({ min: 1 }),
+    body("author", "Author must not be empty.")
+      .trim()
+      .isLength({ min: 1 }),
+    body("content", "Content must not be empty")
+      .trim()
+      .isLength({ min: 1 }),
+    body("genre", "Genre must not be empty")
+    .trim()
+    .isLength({ min: 1 }),
+    body("banner_url", "Banner url must not be empty")
+    .trim()
+    .isLength({ min: 1 }),
+  
+    asyncHandler(async (req, res, next) => {
+      // Extract the validation errors from a request.
+      const errors = validationResult(req);
+  
+      // Create a Book object with escaped and trimmed data.
+      const tale = new Tale({
+        title: req.body.title,
+        author: req.body.author,
+        content: req.body.content,
+        genre: req.body.genre,
+        banner_url: req.body.banner_url
+      });
+  
+      if (!errors.isEmpty()) {
+        res.status(400).json(errors.mapped());
+      } else {
+        await tale.save();
+        res.status(200).json({ message: `Successfully saved ${req.body.title}` });
+      }
+    }),
+];
 
 // Display Tale delete form on GET.
 tale_delete_get = asyncHandler(async (req, res, next) => {
