@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const createError = require("http-errors");
 const libraryRouter = require("./routes/library");
 const apiRouter = require("./routes/api");
-const path = require('path');
+const path = require("path");
 
 require("dotenv").config();
 
@@ -29,17 +29,17 @@ mongoose
   })
   .catch((err) => {
     console.error("Error connecting to MongoDB:", err.message);
-});
+  });
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
 
 // Set up middleware
 app.use(morgan("dev")); // logs requests to the console
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Define routes
 app.use("/", libraryRouter);
