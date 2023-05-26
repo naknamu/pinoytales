@@ -5,7 +5,7 @@ const Genre = require('../models/genre');
 
 // SITE HOMEPAGE
 home = asyncHandler(async (req, res, next) => {
-    // Get details of published blog posts, categories and genre (in parallel)
+    // Get details of latest tales, author and genre (in parallel)
     const [
         latestTales, 
         genreList, 

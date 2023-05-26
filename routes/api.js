@@ -35,7 +35,7 @@ const {
     author_delete_post,
     author_update_get,
     author_update_post
-} = require('../controllers/authorController');
+} = require('../controllers/authorControllerAPI');
 
 
 // Get HOMEPAGE
@@ -104,16 +104,16 @@ router.get("/author/create", author_create_get);
 router.post("/author/create", author_create_post);
 
 // GET request for deleting author
-router.get("/author/:authorname/delete", author_delete_get);
+router.get("/author/:authorid/delete", author_delete_get);
 
 // POST request for deleting author
-router.post("/author/:authorname/delete", author_delete_post);
+router.post("/author/:authorid/delete", author_delete_post);
 
 // GET request for updating author
-router.get("/author/:authorname/update", author_update_get);
+router.get("/author/:authorid/update", author_update_get);
 
 // POST request for updating author
-router.post("/author/:authorname/update", author_update_post);
+router.post("/author/:authorid/update", author_update_post);
 
 // GET request for list of authors
 router.get("/authors", author_list);
