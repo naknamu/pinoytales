@@ -50,16 +50,16 @@ router.get("/tale/create", tale_create_get);
 router.post("/tale/create", tale_create_post);
 
 // GET request for deleting tale
-router.get("/tale/:taletitle/delete", tale_delete_get);
+router.get("/tale/:taleid/delete", tale_delete_get);
 
 // POST request for deleting tale
-router.post("/tale/:taletitle/delete", tale_delete_post);
+router.post("/tale/:taleid/delete", tale_delete_post);
 
 // GET request for updating tale
-router.get("/tale/:taletitle/update", tale_update_get);
+router.get("/tale/:taleid/update", tale_update_get);
 
 // POST request for updating tale
-router.post("/tale/:taletitle/update", tale_update_post);
+router.post("/tale/:taleid/update", tale_update_post);
 
 // GET request for list of all tales
 router.get("/tales", tale_list);

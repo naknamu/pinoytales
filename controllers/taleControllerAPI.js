@@ -80,18 +80,84 @@ tale_delete_get = asyncHandler(async (req, res, next) => {
 
 // Handle Tale delete on POST.
 tale_delete_post = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Tale delete POST: ${req.params.taletitle}`);
+    const tale = await Tale.findByIdAndDelete(req.params.taleid);
+
+    res.status(200).json({ message: `Deleted Tale: ${tale.title}` });
 });
 
 // Display Tale update form on GET.
 tale_update_get = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Tale update GET: ${req.params.taletitle}`);
+    const tale = await Tale.findById(req.params.taleid);
+
+    res.status(200).json(tale);
 });
 
 // Handle Tale update on POST.
-tale_update_post = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: Tale update POST: ${req.params.taletitle}`);
-});
+tale_update_post = [
+    // Convert genre to an array
+    (req, res, next) => {
+      if (!(req.body.genre instanceof Array)) {
+        if (typeof req.body.genre === "undefined") req.body.genre = [];
+        else req.body.genre = new Array(req.body.genre);
+      }
+  
+      next();
+    },
+  
+    // Validate and sanitize fields.
+  
+    body("title", "Title must not be empty.")
+      .trim()
+      .isLength({ min: 1 }),
+    body("author", "Author must not be empty.")
+      .trim()
+      .isLength({ min: 1 }),
+    body("content", "Content must not be empty")
+      .trim()
+      .isLength({ min: 1 }),
+    body("genre", "Genre must not be empty")
+    .trim()
+    .isLength({ min: 1 }),
+    body("banner_url", "Banner url must not be empty")
+    .trim()
+    .isLength({ min: 1 }),
+  
+    asyncHandler(async (req, res, next) => {
+      // Extract the validation errors from a request.
+      const errors = validationResult(req);
+  
+      // Create a Book object with escaped and trimmed data.
+      const tale = new Tale({
+        title: req.body.title,
+        author: req.body.author,
+        content: req.body.content,
+        genre: req.body.genre,
+        banner_url: req.body.banner_url,
+        _id: req.params.taleid
+      });
+  
+      if (!errors.isEmpty()) {
+        res.status(400).json(errors.mapped());
+      } else {
+        const updatedTale = await Tale.findByIdAndUpdate(
+            req.params.taleid,
+            tale,
+            {
+              new: true, // to return the updated document
+              runValidators: true, // to ensure that any validation rules are applied.
+              context: "query", //  to ensure that the pre-save middleware is triggered
+            }
+          );
+    
+          // Wait for the update to complete
+          await updatedTale.save();
+    
+          res
+            .status(200)
+            .json({ message: `Successfully updated ${updatedTale.title}` });
+      }
+    }),
+];
 
 module.exports = {
     tale_list,
