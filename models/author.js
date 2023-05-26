@@ -22,9 +22,6 @@ AuthorSchema.virtual("url").get(function () {
 
 AuthorSchema.pre('save', async function (next) {
     const author = this;
-    if (!author.isModified('name')) {
-      return next();
-    }
     try {
       const slug = slugify(author.name, { lower: true, strict: true });
       author.slug = slug;

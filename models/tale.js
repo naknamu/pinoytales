@@ -43,9 +43,6 @@ TaleSchema.virtual("url").get(function () {
 
 TaleSchema.pre('save', async function (next) {
   const tale = this;
-  if (!tale.isModified('title')) {
-    return next();
-  }
   try {
     const slug = slugify(tale.title, { lower: true, strict: true });
     tale.slug = slug;

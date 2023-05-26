@@ -61,18 +61,60 @@ genre_delete_get = asyncHandler(async (req, res, next) => {
 
 // Handle genre delete on POST.
 genre_delete_post = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: genre delete POST: ${req.params.genrename}`);
+    const genre = await Genre.findByIdAndRemove(req.params.genreid);
+
+    res.status(200).json({ message: `Deleted Genre: ${genre.name}` });
 });
 
 // Display genre update form on GET.
 genre_update_get = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: genre update GET: ${req.params.genrename}`);
+    const genre = await Genre.findById(req.params.genreid).exec();
+
+    res.status(200).json(genre);
 });
 
 // Handle genre update on POST.
-genre_update_post = asyncHandler(async (req, res, next) => {
-    res.send(`NOT IMPLEMENTED: genre update POST: ${req.params.genrename}`);
-});
+genre_update_post = [
+    // Validate and sanitize fields.
+    body("name")
+      .trim()
+      .isLength({ min: 1 })
+      .withMessage("Name must not be empty")
+      .matches(/^[A-Za-z\s]+$/)
+      .withMessage("Name must be alphabetic."),
+  
+    asyncHandler(async (req, res, next) => {
+      // Extract the validation errors from a request.
+      const errors = validationResult(req);
+  
+      // Create a Genre object with trimmed data.
+      const genre = new Genre({
+        name: req.body.name,
+        _id: req.params.genreid
+      });
+  
+      if (!errors.isEmpty()) {
+        res.status(400).json(errors.mapped());
+      } else {
+        const updatedGenre = await Genre.findByIdAndUpdate(
+            req.params.genreid,
+            genre,
+            {
+              new: true, // to return the updated document
+              runValidators: true, // to ensure that any validation rules are applied.
+              context: "query", //  to ensure that the pre-save middleware is triggered
+            }
+          );
+    
+          // Wait for the update to complete
+          await updatedGenre.save();
+    
+          res
+            .status(200)
+            .json({ message: `Successfully updated ${updatedGenre.name}` });
+        }
+    }),
+  ];
 
 module.exports = {
     genre_list,

@@ -21,9 +21,6 @@ GenreSchema.virtual("url").get(function () {
 
 GenreSchema.pre('save', async function (next) {
     const genre = this;
-    if (!genre.isModified('name')) {
-      return next();
-    }
     try {
       const slug = slugify(genre.name, { lower: true, strict: true });
       genre.slug = slug;
