@@ -5,6 +5,7 @@ const createError = require("http-errors");
 const libraryRouter = require("./routes/library");
 const apiRouter = require("./routes/api");
 const path = require("path");
+const cors = require('cors');
 
 require("dotenv").config();
 
@@ -36,6 +37,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 // Set up middleware
+app.use(cors());
 app.use(morgan("dev")); // logs requests to the console
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
