@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all genres
 genre_list = asyncHandler(async (req, res, next) => {
-  const genre_list = await Genre.find({}, "name").exec();
+  const genre_list = await Genre.find({}).exec();
 
   res.status(200).json(genre_list);
 });
@@ -14,7 +14,7 @@ genre_list = asyncHandler(async (req, res, next) => {
 genre_detail = asyncHandler(async (req, res, next) => {
   const genre = await Genre.findOne({ slug: req.params.genrename }).exec();
 
-  const tale_list = await Tale.find({ genre: genre.id }, "title").exec();
+  const tale_list = await Tale.find({ genre: genre.id }, "title slug").exec();
 
   res.status(200).json({ genre, tale_list });
 });
