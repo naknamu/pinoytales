@@ -5,7 +5,7 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all authors
 author_list = asyncHandler(async (req, res, next) => {
-  const author_list = await Author.find({}, "name").exec();
+  const author_list = await Author.find({}, "name slug").exec();
 
   res.status(200).json(author_list);
 });
