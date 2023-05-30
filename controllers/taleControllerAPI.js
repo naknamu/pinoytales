@@ -34,6 +34,15 @@ tale_create_post = [
 
     next();
   },
+  // Convert banner_url to an array
+  (req, res, next) => {
+    if (!(req.body.banner_url instanceof Array)) {
+      if (typeof req.body.banner_url === "undefined") req.body.banner_url = [];
+      else req.body.banner_url = new Array(req.body.banner_url);
+    }
+
+    next();
+  },
 
   // Validate and sanitize fields.
 

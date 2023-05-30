@@ -31,8 +31,16 @@
                                     <div class="text-tiny genre" onclick="navigateToGenre('<%= genre.url %>')"><%= genre.name %></div>
                                 <% }) %>
                             </div>
-                            <!-- <div class="text-tiny genre" onclick="navigateToGenre('<%= tale.genre.url %>')"><%= tale.genre.name %></div> -->
-                            <img class="banner" src="<%= tale.banner_url %>" alt="test" onClick="navigateToTale('<%= tale.url %>')">
+
+                            <picture>
+                            <% tale.banner_url.forEach(banner => { %>
+                                <source srcset="<%= banner %>">
+                                <% if (banner.includes("webp")) { %>
+                                  <img src="<%= banner %>" alt="<%= tale.title %> banner" width="400" height="400" onClick="navigateToTale('<%= tale.url %>')">
+                                <% } %>
+                            <% }) %>
+                            </picture>
+
                             <h3 class="h3 title" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
                             <p class="preview-content"><%= previewContent %>...</p>
                         </div>
