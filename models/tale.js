@@ -30,9 +30,9 @@ const TaleSchema = new Schema(
     ],
     banner_url: [
       {
-      type: String,
-      required: true,
-      }
+        type: String,
+        required: true,
+      },
     ],
   },
   { timestamps: true }

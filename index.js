@@ -5,7 +5,7 @@ const createError = require("http-errors");
 const libraryRouter = require("./routes/library");
 const apiRouter = require("./routes/api");
 const path = require("path");
-const cors = require('cors');
+const cors = require("cors");
 
 require("dotenv").config();
 
