@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <%- include('partials/head'); %>
-  </head>
-  <body class="light-theme">
-    <%- include('partials/nav'); %>
-    
-    <main class="main tale-detail">
-      <div class="container">
-        <div class="tale-wrapper">
 
-          <div class="genre-wrapper">
-            <% tale.genre.forEach(genre => { %>
-                <div class="text-tiny genre" onclick="navigateToGenre('<%= genre.url %>')"><%= genre.name %></div>
-            <% }) %>
+<head>
+  <%- include('partials/head'); %>
+</head>
+
+<body class="light-theme">
+  <%- include('partials/nav'); %>
+
+  <main class="main tale-detail">
+    <div class="container">
+      <div class="tale-wrapper">
+
+        <div class="genre-wrapper">
+          <% tale.genre.forEach(genre => { %>
+          <div class="text-tiny genre" onclick="navigateToGenre('<%= genre.url %>')">
+            <%= genre.name %>
           </div>
-
-          <picture>
-            <% tale.banner_url.forEach(banner => { %>
-                <source srcset="<%= banner %>">
-            <% }) %>
-            <img src="<%= `${tale.banner_url.find((banner) => banner.includes('.webp')) || tale.banner_url[0]}` %>" alt="<%= tale.title %> banner" width="400" height="400">
-          </picture>
-
-          <h1 class="h1"><%= tale.title %></h1>
-
-          <p onclick="navigateToAuthor('<%= tale.author.url %>')">by <span class="author"> <%= tale.author.name %></span></p>
-
-          <p class="tale-content"><%= tale.content %></p>
-
+          <% }) %>
         </div>
-      </div>
-    </main>
-    
-    <%- include('partials/footer'); %>
 
-  </body>
+        <picture>
+          <% tale.banner_url.forEach(banner => { %>
+          <source srcset="<%= banner %>">
+          <% }) %>
+          <img src="<%= `${tale.banner_url.find((banner) => banner.includes('.webp')) || tale.banner_url[0]}` %>" 
+            alt="<%= tale.title %> banner" 
+            width="400" 
+            height="400">
+        </picture>
+
+        <h1 class="h1">
+          <%= tale.title %>
+        </h1>
+
+        <p onclick="navigateToAuthor('<%= tale.author.url %>')">
+          by
+          <span class="author">
+            <%= tale.author.name %></span>
+        </p>
+
+        <p class="tale-content">
+          <%= tale.content %>
+        </p>
+
+      </div>
+    </div>
+  </main>
+
+  <%- include('partials/footer'); %>
+
+</body>
+
 </html>
