@@ -36,7 +36,8 @@
                                 <% tale.banner_url.forEach(banner => { %>
                                     <source srcset="<%= banner %>">
                                 <% }) %>
-                                <img src="<%= tale.banner_url[0] %>" alt="<%= tale.title %> banner" width="400" height="400" onClick="navigateToTale('<%= tale.url %>')">
+                                <img src="<%= `${tale.banner_url.find((banner) => banner.includes('.webp')) || tale.banner_url[0]}` %>" 
+                                alt="<%= tale.title %> banner" width="400" height="400" onClick="navigateToTale('<%= tale.url %>')">
                             </picture>
 
                             <h3 class="h3 title" onClick="navigateToTale('<%= tale.url %>')"><%= tale.title %></h3>
