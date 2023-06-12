@@ -4,7 +4,7 @@ const { body, validationResult } = require("express-validator");
 
 // Display list of all Tale
 tale_list = asyncHandler(async (req, res, next) => {
-  const results = await Tale.find({}, "title slug").exec();
+  const results = await Tale.find({}).exec();
 
   res.status(200).json(results);
 });
