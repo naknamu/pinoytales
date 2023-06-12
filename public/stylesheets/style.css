@@ -65,7 +65,7 @@
 
 html {
   font-family: var(--ff-ibm-plex);
-  font-size: var(--fs-base); /* base font-size (1rem = 16px) */
+  font-size: 18px; /* base font-size (1rem = 16px) */
   line-height: 1.6;
 }
 
@@ -277,7 +277,11 @@ img {
 
 .tale-content {
   font-family: var(--ff-segoe);
-  margin-block: 1rem;
+  /* margin-block: 1rem; */
+}
+
+.tale-content > p {
+  margin-block: 1em;
 }
 
 /** MEDIA QUERIES **/

@@ -13,6 +13,14 @@ tale_detail = asyncHandler(async (req, res, next) => {
     .populate("genre author")
     .exec();
 
+  // Set the default options for marked (if needed)
+  marked.setOptions({
+  gfm: true, // Enable GitHub flavored Markdown
+  breaks: true, // Enable line breaks
+  mangle: false,
+  headerIds: false
+  });
+
   res.render("tale_detail", {
     title: `${results.title}`,
     tale: results,
