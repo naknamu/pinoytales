@@ -13,12 +13,8 @@ require("dotenv").config();
 const app = express();
 
 // Connect to MongoDB
-let mongoDB = process.env.MONGO_URI_DEV;
-
-// If in prod environment, use prod database
-if (process.env.NODE_ENV === "production") {
-  mongoDB = process.env.MONGO_URI;
-}
+const { config } = require("./config");
+let mongoDB = config.mongoURI;
 
 mongoose
   .connect(mongoDB, {
