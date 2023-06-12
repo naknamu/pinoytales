@@ -1,5 +1,6 @@
 const Tale = require("../models/tale");
 const asyncHandler = require("express-async-handler");
+const marked = require('marked');
 
 // Display list of all Tale
 tale_list = asyncHandler(async (req, res, next) => {
@@ -15,6 +16,7 @@ tale_detail = asyncHandler(async (req, res, next) => {
   res.render("tale_detail", {
     title: `${results.title}`,
     tale: results,
+    markdown: marked,
   });
 });
 

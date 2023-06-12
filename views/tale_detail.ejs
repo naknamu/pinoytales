@@ -41,7 +41,7 @@
         </p>
 
         <p class="tale-content">
-          <%= tale.content %>
+          <%- markdown.parse(tale.content) %>
         </p>
 
       </div>
