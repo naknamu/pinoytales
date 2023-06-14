@@ -157,6 +157,9 @@ img {
   width: max-content;
   box-shadow: var(--shadow-2);
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 
 .btn-block:hover {
@@ -177,9 +180,10 @@ img {
 }
 
 .logo {
-  font-size: 32px;
+  font-size: var(--fs-2);
   color: var(--forest-green);
   font-family: "Montserrat Subrayada", sans-serif;
+  display: flex;
 }
 
 /** HOME **/
