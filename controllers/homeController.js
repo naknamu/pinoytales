@@ -7,7 +7,7 @@ const Genre = require("../models/genre");
 home = asyncHandler(async (req, res, next) => {
   // Get details of latest tales, author and genre (in parallel)
   const [latestTales, genreList, authorList] = await Promise.all([
-    Tale.find({}).limit(6).sort({ createdAt: -1 }).populate("genre").exec(),
+    Tale.find({}).limit(10).sort({ createdAt: -1 }).populate("genre").exec(),
     Genre.find({}).sort({ name: 1 }).exec(),
     Author.find({}).sort({ name: 1 }).exec(),
   ]);
