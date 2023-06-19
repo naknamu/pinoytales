@@ -6,6 +6,7 @@ const libraryRouter = require("./routes/library");
 const apiRouter = require("./routes/api");
 const path = require("path");
 const cors = require("cors");
+const favicon = require('serve-favicon');
 
 require("dotenv").config();
 
@@ -38,6 +39,9 @@ app.use(morgan("dev")); // logs requests to the console
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+
+// Insert favicon
+app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 // Define routes
 app.use("/", libraryRouter);
