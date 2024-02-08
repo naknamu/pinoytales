@@ -285,6 +285,11 @@ img {
   gap: 1rem;
 }
 
+.tale-image {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .tale-content {
   font-family: var(--ff-segoe);
   /* margin-block: 1rem; */
